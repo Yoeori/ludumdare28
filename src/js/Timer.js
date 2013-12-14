@@ -3,9 +3,11 @@ var Timer = Class.extend({
 	time : 0,
 	lastupdate: 1000,
 	isPaused : false,
+	world : 0,
 	
-	init : function(time) {
+	init : function(time, world) {
 		this.time = time;
+		this.world = world;
 	},
 	
 	update : function(delta) {
@@ -38,6 +40,7 @@ var Timer = Class.extend({
 	},
 	
 	onTimerfinish : function() {
+		this.world.cutscene = new CutsceneGameOver(this.world);
 		//World destruction or something
 	}
 	

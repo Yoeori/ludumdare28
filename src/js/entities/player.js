@@ -6,8 +6,8 @@ var EntityPlayer = Class.extend({
 	velY : 0,
 	velX : 0,
 	
-	width: 120,
-	height: 180,
+	width: 84,
+	height: 168,
 	
 	facing : true,
 	

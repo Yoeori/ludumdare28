@@ -4,6 +4,7 @@ var World = Class.extend({
 	currenttextBox : 0,
 	timer : 0,
 	game : 0,
+	cutscene : 0,
 	
 	init : function(game) {
 		this.game = game;
@@ -15,31 +16,37 @@ var World = Class.extend({
 			["We thought: Why not let", "those silly old humans do", "it?"],
 			["And well, ", "you only have one day.", "So uhm, hurry."]
 		], function(world) {
-			world.timer = new Timer(24*60);
+			world.timer = new Timer(10, world);
 		});
 	},
 	
 	update : function(deltaTime) {
-		
-		this.player.update(deltaTime);
-		if(this.timer != 0)
-			this.timer.update(deltaTime);
-		if(this.currenttextBox != 0) 
-			this.currenttextBox.update(deltaTime);
-		
+		if(this.cutscene != 0) {
+			this.cutscene.update(deltaTime);
+		} else {
+			this.player.update(deltaTime);
+			if(this.timer != 0)
+				this.timer.update(deltaTime);
+			if(this.currenttextBox != 0) 
+				this.currenttextBox.update(deltaTime);
+		}
 	},
 	
 	render : function() {
-		
-		ctx.drawImage(sml["fg"], 0, 0);
-		
-		this.player.render();
-		
-		if(this.currenttextBox != 0) 
-			this.currenttextBox.render();
-		
-		if(this.timer != 0)
-			this.timer.render();
+		if(this.cutscene != 0) {
+			this.cutscene.render();
+		} else {
+			ctx.drawImage(sml["fg"], 0, 0);
+			
+			this.player.render();
+			
+			if(this.currenttextBox != 0) 
+				this.currenttextBox.render();
+			
+			if(this.timer != 0)
+				this.timer.render();
+			
+		}
 	},
 	
 	keyPressed : function(e) {
