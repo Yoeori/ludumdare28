@@ -7,7 +7,17 @@ var World = Class.extend({
 	init : function() {
 		this.player = new EntityPlayer();
 		this.timer = new Timer(24*60);
-		this.currenttextBox = new Textbox();
+		
+		//Create first storylinetextbox
+		var storytextbox = Textbox.extend({
+			
+			onEnter : function() {
+				
+				return true;
+			}
+			
+		});
+		this.currenttextBox = new Textbox(this, ["Welcome a board of the", "[Alien Jibberish] ship!"]);
 	},
 	
 	update : function(deltaTime) {
@@ -43,8 +53,10 @@ var World = Class.extend({
 	},
 	
 	stopTextbox : function() {
-		if(this.currenttextBox.canenter)
-			this.currenttextBox = 0;
+		if(this.currenttextBox.canenter) {
+			if(!this.currenttextBox.onEnter())
+				this.currenttextBox = 0;
+		}
 	}
 	
 	

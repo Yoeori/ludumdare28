@@ -33,7 +33,7 @@ var Timer = Class.extend({
 		ctx.fillText(hour+":"+min,canvas.width-130,50);
 	},
 	
-	addTime : function(timetoadd) {
+	addTime : function(timetoadd) { //Or remove time...
 		this.time += timetoadd;
 	},
 	

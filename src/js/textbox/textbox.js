@@ -6,8 +6,8 @@ var Textbox = Class.extend({
 	shouldaddmoretext : 30,
 	shouldrenderenter : false,
 	
-	init : function() {
-		
+	init : function(world, text) {
+		this.text = text;
 	},
 	
 	render : function() {
@@ -30,7 +30,7 @@ var Textbox = Class.extend({
 	},
 	
 	onEnter : function() {
-		
+		return true;
 	},
 	
 	updateTextViewed : function(delta) {
