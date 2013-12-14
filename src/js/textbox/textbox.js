@@ -1,13 +1,19 @@
 var Textbox = Class.extend({
 	
-	text : ["This is a test", "this is the second line", "and a third line", "maybe a fourth"],
+	text : [],
 	textviewed : 0,
 	canenter : false,
 	shouldaddmoretext : 30,
 	shouldrenderenter : false,
+	world : 0,
+	todotexts : [],
+	endfunc : 0,
 	
-	init : function(world, text) {
+	init : function(world, text, todotexts, endfunc) {
+		this.world = world;
 		this.text = text;
+		this.todotexts = todotexts;
+		this.endfunc = endfunc;
 	},
 	
 	render : function() {
@@ -30,7 +36,17 @@ var Textbox = Class.extend({
 	},
 	
 	onEnter : function() {
-		return true;
+		if(this.todotexts.length <= 0) {
+			this.endfunc(this.world);
+			return false;
+		} else {
+			var newlist = [];
+			for(var i = 1; i < this.todotexts.length; i++) {
+				newlist[i-1] = this.todotexts[i];
+			}
+			this.world.currenttextBox = new Textbox(this.world, this.todotexts[0], newlist, this.endfunc);
+			return true;
+		}
 	},
 	
 	updateTextViewed : function(delta) {

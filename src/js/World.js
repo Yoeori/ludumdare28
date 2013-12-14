@@ -6,24 +6,22 @@ var World = Class.extend({
 	
 	init : function() {
 		this.player = new EntityPlayer();
-		this.timer = new Timer(24*60);
-		
-		//Create first storylinetextbox
-		var storytextbox = Textbox.extend({
-			
-			onEnter : function() {
-				
-				return true;
-			}
-			
+		//this.timer = new Timer(24*60);
+		this.currenttextBox = new Textbox(this, ["Welcome a board of the", "[Alien Jibberish] ship!"], [
+			["Becouse of \"Things\" we", "might have put a bomb on", "your silly old planet."],
+			["And becouse we're too", "lazy to push the", "\"don't blow up\" button", "ourselves."],
+			["We taught: Why not let", "those silly old humans do", "it?"],
+			["But uhm the bomb", "might explode in 24 hours..", "so uhm hurry."]
+		], function(world) {
+			world.timer = new Timer(24*60);
 		});
-		this.currenttextBox = new Textbox(this, ["Welcome a board of the", "[Alien Jibberish] ship!"]);
 	},
 	
 	update : function(deltaTime) {
 		
 		this.player.update(deltaTime);
-		this.timer.update(deltaTime);
+		if(this.timer != 0)
+			this.timer.update(deltaTime);
 		if(this.currenttextBox != 0) 
 			this.currenttextBox.update(deltaTime);
 		
@@ -38,7 +36,8 @@ var World = Class.extend({
 		if(this.currenttextBox != 0) 
 			this.currenttextBox.render();
 		
-		this.timer.render();
+		if(this.timer != 0)
+			this.timer.render();
 	},
 	
 	keyPressed : function(e) {
