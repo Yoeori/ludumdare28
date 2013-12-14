@@ -10,10 +10,10 @@ var World = Class.extend({
 		this.player = new EntityPlayer(this);
 		//this.timer = new Timer(24*60);
 		this.currenttextBox = new Textbox(this, ["Welcome a board of the", "[Alien Jibberish] ship!"], [
-			["Becouse of \"Things\" we", "might have put a bomb on", "your silly old planet."],
-			["And becouse we're too", "lazy to push the", "\"don't blow up\" button", "ourselves."],
-			["We taught: Why not let", "those silly old humans do", "it?"],
-			["But uhm the bomb", "might explode in 24 hours..", "so uhm hurry."]
+			["Because of \"Things\" we", "might have put a bomb on", "your silly old planet."],
+			["And because we're too", "lazy to push the", "\"don't blow up\" button", "ourselves..,"],
+			["We thought: Why not let", "those silly old humans do", "it?"],
+			["But uhm the bomb", "might explode in 24 hours.", "So uhm, hurry."]
 		], function(world) {
 			world.timer = new Timer(24*60);
 		});
