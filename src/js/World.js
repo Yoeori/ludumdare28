@@ -3,9 +3,11 @@ var World = Class.extend({
 	player : 0,
 	currenttextBox : 0,
 	timer : 0,
+	game : 0,
 	
-	init : function() {
-		this.player = new EntityPlayer();
+	init : function(game) {
+		this.game = game;
+		this.player = new EntityPlayer(this);
 		//this.timer = new Timer(24*60);
 		this.currenttextBox = new Textbox(this, ["Welcome a board of the", "[Alien Jibberish] ship!"], [
 			["Becouse of \"Things\" we", "might have put a bomb on", "your silly old planet."],

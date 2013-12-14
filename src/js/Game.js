@@ -7,7 +7,7 @@ var Game = Class.extend({
 	
 	init : function() {
         this.keyboard = new Input();
-		this.world = new World();
+		this.world = new World(this);
 		ObjectT = this;
 		this.GameRenderer = requestAnimationFrame(function() {ObjectT.render();});
 		setInterval(function() {ObjectT.update(15);},15);

@@ -28,9 +28,9 @@ var Timer = Class.extend({
 		var min = this.time%60;
 		if(min < 10)
 			min = "0"+min;
-		
+		ctx.fillStyle = "black";
 		ctx.font="36px victor";
-		ctx.fillText(hour+":"+min,canvas.width-130,50);
+		ctx.fillText(hour+":"+min,canvas.width-134,50);
 	},
 	
 	addTime : function(timetoadd) { //Or remove time...

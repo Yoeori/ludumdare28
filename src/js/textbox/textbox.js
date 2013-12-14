@@ -18,7 +18,7 @@ var Textbox = Class.extend({
 	
 	render : function() {
 		var pos = [(canvas.width/2)-(sml["textbox"].width/2), 100], rendertext = this.getTextViewed();
-		
+		ctx.fillStyle = "black";
 		ctx.drawImage(sml["textbox"], pos[0], pos[1]);
 		ctx.font="24px 'victor'";
 		for(var i = 0; i < rendertext.length; i++) {
