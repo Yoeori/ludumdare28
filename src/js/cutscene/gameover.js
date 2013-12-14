@@ -13,7 +13,7 @@ var CutsceneGameOver = Class.extend({
 			this.opacity -= 0.004;
 			if(this.opacity <= 0) {
 				this.opacity = 0;
-				this.world.currenttextBox = new Textbox(this.world, ["You failed!", "You moron."], [], function(world) {
+				this.world.currenttextBox = new Textbox(this.world, ["You failed!", "Moron."], [], function(world) {
 					world.game.world = new World(world.game);
 				});
 				this.isdone = true;
