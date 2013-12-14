@@ -32,6 +32,7 @@ var Textbox = Class.extend({
 	},
 	
 	update : function(delta) {
+		console.log("d");
 		this.updateTextViewed(delta);
 	},
 	

@@ -1,17 +1,31 @@
 var CutsceneGameOver = Class.extend({
 	
 	world : 0,
+	opacity : 1,
+	isdone : false,
 	
 	init : function(world) {
 		this.world = world;
 	},
 	
 	update : function() {
-		
+		if(!this.isdone) {
+			this.opacity -= 0.004;
+			if(this.opacity <= 0) {
+				this.opacity = 0;
+				this.world.currenttextBox = new Textbox(this.world, ["You failed!", "You moron."], [], function(world) {
+					world.game.world = new World(world.game);
+				});
+				this.isdone = true;
+			}
+		}
 	},
 	
 	render : function() {
 		ctx.fillStyle = "black";
-		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.drawImage(sml["universe"], 0, 0);
+		ctx.globalAlpha = this.opacity;
+		ctx.drawImage(sml["earth"], 30*16, 14*16);
+		ctx.globalAlpha = 1;
 	}
 });

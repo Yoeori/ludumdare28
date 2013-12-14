@@ -27,9 +27,9 @@ var World = Class.extend({
 			this.player.update(deltaTime);
 			if(this.timer != 0)
 				this.timer.update(deltaTime);
-			if(this.currenttextBox != 0) 
-				this.currenttextBox.update(deltaTime);
 		}
+		if(this.currenttextBox != 0) 
+				this.currenttextBox.update(deltaTime);
 	},
 	
 	render : function() {
@@ -40,13 +40,13 @@ var World = Class.extend({
 			
 			this.player.render();
 			
-			if(this.currenttextBox != 0) 
-				this.currenttextBox.render();
 			
 			if(this.timer != 0)
 				this.timer.render();
 			
 		}
+		if(this.currenttextBox != 0) 
+				this.currenttextBox.render();
 	},
 	
 	keyPressed : function(e) {
