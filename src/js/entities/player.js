@@ -96,7 +96,10 @@ var EntityPlayer = Class.extend({
 		else
 			this.ani = 1;
 		
-		this.facing = this.velX >= 0;
+		if(this.velX > 0)
+			this.facing = 1;
+		else if(this.velX < 0)
+			this.facing = 0;
 	}
 	
 });
