@@ -31,7 +31,7 @@ var World = Class.extend({
 	
 	render : function() {
 		
-		ctx.drawImage(sml["bg"], 0, 0);
+		ctx.drawImage(sml["fg"], 0, 0);
 		
 		this.player.render();
 		
