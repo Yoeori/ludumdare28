@@ -7,6 +7,11 @@ Copyright Yoeori, Jelmerro, Max
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Ludum Dare 28</title>
     <style>
+		@font-face {
+			font-family: 'victor';
+			font-style: normal;
+			src: url(./fonts/victor-pixel.ttf);
+		}
 		body {
 			margin: 0;
 			padding: 0;
@@ -26,7 +31,7 @@ Copyright Yoeori, Jelmerro, Max
 			left: 20px;
 			border-color: #FFF;
 		}
-	</style>
+		</style>
 </head>
 
 <body onLoad="init()">
@@ -49,6 +54,10 @@ Copyright Yoeori, Jelmerro, Max
 	
 <!-- Main file -->
 <script type="text/javascript" src="js/Game.js"></script>
+	
+	
+<script type="text/javascript" src="js/entities/player.js"></script>
+<script type="text/javascript" src="js/textbox/textbox.js"></script>
 	
 <!-- System files (not in Java version) -->
 <script type="text/javascript" src="js/sys/ReqAni.js"></script>
