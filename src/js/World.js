@@ -13,7 +13,7 @@ var World = Class.extend({
 			["Because of \"Things\" we", "might have put a bomb on", "your silly old planet."],
 			["And because we're too", "lazy to push the", "\"don't blow up\" button", "ourselves..,"],
 			["We thought: Why not let", "those silly old humans do", "it?"],
-			["But uhm the bomb", "might explode in 24 hours.", "So uhm, hurry."]
+			["And well, ", "you only have one day.", "So uhm, hurry."]
 		], function(world) {
 			world.timer = new Timer(24*60);
 		});
