@@ -22,7 +22,7 @@ var sound = {
 		functhis = this;
 		function addSound(c,functhis) {
 			functhis.sounds[name][c] = new Array();
-			functhis.sounds[name][c]["url"] = url+c+".wav";
+			functhis.sounds[name][c]["url"] = url+c+".mp3";
 			functhis.sounds[name][c]["audio"] = new Audio();
 			functhis.sounds[name][c]["audio"].addEventListener('canplaythrough', function() {
 				console.log("Loaded sound "+name+" "+c+", "+functhis.sounds[name][c]["url"]);
@@ -154,9 +154,9 @@ var sound = {
 	
 }
 var soundsloadedlist = 0;
-
+sound.add("intro", 1, function() { soundsloadedlist++; checksoundsloaded(); });
 function checksoundsloaded() {
-	if(soundsloadedlist >= 0) {
+	if(soundsloadedlist >= 1) {
 		soundloaded = true;
 		console.log("loaded al sounds");
 	}

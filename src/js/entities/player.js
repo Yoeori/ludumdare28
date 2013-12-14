@@ -6,7 +6,7 @@ var EntityPlayer = Class.extend({
 	velY : 0,
 	velX : 0,
 	
-	width: 84,
+	width: 90,
 	height: 168,
 	
 	facing : true,
@@ -18,16 +18,22 @@ var EntityPlayer = Class.extend({
 	
 	isJumping : false,
 	
+	animations : [],
+	ani : 1,
+	
 	init : function(world) {
 		this.world = world;
+		this.animations[0] = new Animation(0, 2, 0, 120);
+		this.animations[1] = new Animation(0, 0, 1, 120);
 	},
 	
 	render : function() {
-	
+		
+		var frame = this.getCurrentFrame();
 		if(this.facing == true) {
 			ctx.drawImage(sml["player"],							// Image
-				  		  0,										// Start X on image
-						  0,										// Start Y on image
+				  		  this.width*frame[1],										// Start X on image
+						  this.height*frame[0],										// Start Y on image
 						  this.width, 								// Width in image to display
 						  this.height,								// Height in image to display
 						  this.PosX, 								// Position X
@@ -39,8 +45,8 @@ var EntityPlayer = Class.extend({
 			ctx.translate(this.width, 0);
 			ctx.scale(-1, 1);
 			ctx.drawImage(sml["player"], 
-						  0, 
-						  0,
+						  this.width*frame[1],
+						  this.height*frame[0],	
 						  this.width, 
 						  this.height,
 						  -(this.PosX), 
@@ -49,6 +55,10 @@ var EntityPlayer = Class.extend({
 						  this.height);
 			ctx.restore();
 		}
+	},
+	
+	getCurrentFrame : function() {
+		return this.animations[this.ani].getCurrentFrame();
 	},
 	
 	update : function(delta) {
@@ -66,6 +76,8 @@ var EntityPlayer = Class.extend({
 			this.velX -= 12;
 		}
 		
+		this.animations[this.ani].update(delta);
+		
 		this.velX *= 0.35;
 		if(Math.abs(this.velX) <= 0.35)
 			this.velX = 0;
@@ -79,6 +91,10 @@ var EntityPlayer = Class.extend({
 		} else {
 			this.velY += this.GRAVITY;
 		}
+		if(Math.abs(this.velX) > 0)
+			this.ani = 0;
+		else
+			this.ani = 1;
 		
 		this.facing = this.velX >= 0;
 	}
