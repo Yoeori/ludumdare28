@@ -1,4 +1,4 @@
-loadimages = ["fg", "textbox"];
+loadimages = ["fg", "textbox", "player"];
 var sml = [];
 imagesloaded = 0;
 function smlload(i) { //Preload all images
