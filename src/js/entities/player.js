@@ -32,8 +32,20 @@ var EntityPlayer = Class.extend({
 			this.isJumping = true;
 		}
 		
-		this.PosY += this.velY;
+		if(this.world.game.keyboard.d) {
+			this.velX += 12;
+		}
 		
+		if(this.world.game.keyboard.a) {
+			this.velX -= 12;
+		}
+		
+		this.velX *= 0.35;
+		if(Math.abs(this.velX) <= 0.35)
+			this.velX = 0;
+		
+		this.PosY += this.velY;
+		this.PosX += this.velX;
 		if(this.PosY >= this.GROUNDHEIGHT) {
 			this.velY = 0;
 			this.isJumping = false;
