@@ -5,7 +5,7 @@ var Game = Class.extend({
     keyboard : 0,
 	player : 0,
 	currenttextBox : 0,
-	
+	timer : 9*60,
 	
 	init : function() {
         this.keyboard = new Input();
@@ -15,6 +15,8 @@ var Game = Class.extend({
 		ObjectT = this;
 		this.GameRenderer = requestAnimationFrame(function() {ObjectT.render();});
 		setInterval(function() {ObjectT.update(15);},15);
+
+		setInterval(function() {ObjectT.timer--;}, 1000);
 		
 	},
 	
@@ -43,8 +45,25 @@ var Game = Class.extend({
 		if(this.currenttextBox != 0) 
 			this.currenttextBox.render();
 		
+		this.renderTimer();
+		
 		ObjectT = this;
 		this.GameRenderer = requestAnimationFrame(function() {ObjectT.render();});
+	},
+	
+	renderTimer : function() {
+		ctx.font="36px victor";
+		ctx.fillText(this.gettimertext(),canvas.width-130,50);
+	},
+	
+	gettimertext : function() {
+		var hour = Math.floor((this.timer/60));
+		if(hour < 10)
+			hour = "0"+hour;
+		var min = this.timer%60;
+		if(min < 10)
+			min = "0"+min;
+		return hour+":"+min;
 	},
 	
 	mouseClicked : function() {
@@ -52,7 +71,7 @@ var Game = Class.extend({
 	},
 	
 	keyPressed : function(e) {
-		if(e = 13 && this.currenttextBox != 0)
+		if(e == 13 && this.currenttextBox != 0)
 			this.stopTextbox();
 		
 		this.keyboard.onKeyDown(e);
