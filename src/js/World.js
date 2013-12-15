@@ -9,7 +9,7 @@ var World = Class.extend({
 	init : function(game) {
 		this.game = game;
 		this.player = new EntityPlayer(this);
-		//this.timer = new Timer(24*60);
+		
 		this.currenttextBox = new Textbox(this, ["Welcome a board of the", "[Alien Jibberish] ship!"], [
 			["Because of \"Things\" we", "might have put a bomb on", "your silly old planet."],
 			["And because we're too", "lazy to push the", "\"don't blow up\" button", "ourselves..,"],
@@ -37,7 +37,7 @@ var World = Class.extend({
 		if(this.cutscene != 0) {
 			this.cutscene.render();
 		} else {
-			ctx.drawImage(sml["fg"], 0, 0);
+			ctx.drawImage(sml["spaceship"], 0, 0);
 			
 			this.player.render();
 			
@@ -45,6 +45,7 @@ var World = Class.extend({
 			if(this.timer != 0)
 				this.timer.render();
 			
+			ctx.drawImage(sml["fg"], 0, 0);
 		}
 		if(this.currenttextBox != 0) 
 				this.currenttextBox.render();
