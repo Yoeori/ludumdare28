@@ -4,6 +4,7 @@ var Game = Class.extend({
 	GameRenderer : 0,
     keyboard : 0,
 	world : 0,
+	gui : 0,
 	
 	init : function() {
         this.keyboard = new Input();
@@ -17,12 +18,15 @@ var Game = Class.extend({
 	update : function(deltaTime) {
 		Tick++;
 		
-		if(!this.paused)
-			this.world.update(deltaTime);
+		if(!this.paused && this.gui == 0)
+				this.world.update(deltaTime);
+				
+		if(this.gui != 0)
+			this.gui.update(delta);
 		
-		for(var i = 0; i < sound.BgMusic.length; i++) {
+		/*for(var i = 0; i < sound.BgMusic.length; i++) {
 			sound.BgMusic[i].update();
-		}
+		}*/
 
 	},
 	
@@ -30,7 +34,11 @@ var Game = Class.extend({
 		FPS++;
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		
-		this.world.render();
+		if(this.gui == 0 || this.gui.shouldrender)
+			this.world.render();
+			
+		if(this.gui != 0)
+			this.gui.render();
 		
 		ObjectT = this;
 		this.GameRenderer = requestAnimationFrame(function() {ObjectT.render();});
@@ -38,13 +46,28 @@ var Game = Class.extend({
 	
 	mouseClicked : function() {
 		//Do Nothing
+		if(this.gui != 0 && !this.paused)
+			this.gui.mouseClicked();
 	},
 	
 	keyPressed : function(e) {
-		if(!this.paused)
+		if(!this.paused) {
+			if(this.gui != 0 && !this.paused)
+				this.gui.keyPressed(e);
 			this.world.keyPressed(e);
+		}
 		
 		this.keyboard.onKeyDown(e);
+	},
+	
+	setGui : function(newgui) {
+		this.gui = newgui;
+		this.gui.start();
+	},
+	
+	stopGui : function() {
+		this.gui.stop();
+		this.gui = 0;
 	}
 	
 });
